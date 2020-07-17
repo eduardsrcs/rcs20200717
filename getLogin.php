@@ -8,8 +8,8 @@ $pdo_object = new PdoDB;
 $postData = $_POST;
 $res = $pdo_object->getData("SELECT * FROM logins WHERE login = ?", [$postData['login']]);
 if(!empty($res)){
+
   if(password_verify($postData['password'], $res[0]['password'])){
-    // ddv($res);
     $_SESSION['login']['login'] = $res[0]['login'];
     ddv('Hello, ' . $_SESSION['login']['login'] .'!', 0);
     echo '<a href="logout.php">Logout</a>';
